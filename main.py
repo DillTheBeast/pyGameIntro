@@ -1,5 +1,6 @@
 # Example file showing a basic pygame "game loop"
 import pygame
+import sys
 
 # pygame setup
 pygame.init()
@@ -29,7 +30,9 @@ ball_speed = [BALL_SPEED, BALL_SPEED]
 score1 = 0
 score2 = 0
 
-text = smallfont.render('quit' , True , color)
+smallfont = pygame.font.SysFont('Corbel',35)
+text = smallfont.render('quit' , True , WHITE)
+
 running = True
 
 
