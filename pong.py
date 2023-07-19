@@ -99,12 +99,18 @@ while running:
 
     if buttonClick:
         if right:
+            # ball_speed[0] = -3
+            # ball_speed[1] = -3
             ball.move_ip(ball_speed)
         else:
+            # ball_speed[0] = 3
+            # ball_speed[1] = 3
             ball.move_ip( ball_speed)
 
     if ball.top < 0 or ball.bottom > HEIGHT:
+        print('Speed before:', ball_speed[0])
         ball_speed[1] *=- 1
+        print('Speed after:', ball_speed[0])
     if ball.colliderect(paddle1) or ball.colliderect(paddle2):
         ball_speed[0] *=- 1
         if abs(ball_speed[0]) == ball_speed[0]:
