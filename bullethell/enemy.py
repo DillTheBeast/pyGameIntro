@@ -7,7 +7,7 @@ class enemy:
         enemy.speed = speed
 
     def draw(enemy, screen, color, WIDTH, HEIGHT):
-        enemies = pygame.Rect(WIDTH/2, HEIGHT, 15, 15)
+        enemies = pygame.Rect(WIDTH/2, 20, 15, 15)
         pygame.draw.rect(screen, color, enemies)
 
     def move(enemy, WIDTH):
@@ -17,5 +17,5 @@ class enemy:
             enemy.x = 800
 
     def update(enemy, screen, color, WIDTH, HEIGHT):
-        enemy.move(WIDTH)
         enemy.draw(screen, color, WIDTH, HEIGHT)
+        enemy.move(WIDTH)
