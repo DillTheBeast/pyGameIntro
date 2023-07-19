@@ -24,7 +24,7 @@ pygame.display.set_caption("Bullet Hell")
 clock = pygame.time.Clock()
 
 player = pygame.Rect(WIDTH/2, HEIGHT/2, 15, 15)
-enemy = rectanglepants.enemy(WIDTH, HEIGHT//2, 2)
+enemy = rectanglepants.enemy(HEIGHT/2, 20, 2)
 
 running = True
 done = False
@@ -39,31 +39,31 @@ while running:
             running = False
 
 
-    if event.type == pygame.MOUSEBUTTONDOWN:         
-            #if the mouse is clicked on the
-            # button the game is terminated
-            if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
-                quit()
-                buttonClick = True
+    # if event.type == pygame.MOUSEBUTTONDOWN:         
+    #         #if the mouse is clicked on the
+    #         # button the game is terminated
+    #         if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
+    #             quit()
+    #             buttonClick = True
 
     screen.fill(RED)
-    mouse = pygame.mouse.get_pos()
-    if not buttonClick:
-        if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
-            pygame.draw.rect(screen,color_light,[WIDTH/2 - 70,HEIGHT - 40, 140, 40])        
-        else:
-            pygame.draw.rect(screen,color_dark,[WIDTH/2 - 70,HEIGHT - 40, 140, 40])
-    else:
-        if not done1:
-            pygame.display.update()
-            done1 = True
+    # mouse = pygame.mouse.get_pos()
+    # if not buttonClick:
+    #     if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
+    #         pygame.draw.rect(screen,color_light,[WIDTH/2 - 70,HEIGHT - 40, 140, 40])        
+    #     else:
+    #         pygame.draw.rect(screen,color_dark,[WIDTH/2 - 70,HEIGHT - 40, 140, 40])
+    # else:
+    #     if not done1:
+    #         pygame.display.update()
+    #         done1 = True
 
-    if not buttonClick:
-        screen.blit(button , (WIDTH/2 - 70 + 35/2,HEIGHT - 40))
-    else:
-        if not done:
-            pygame.display.update()
-            done = True
+    # if not buttonClick:
+    #     screen.blit(button , (WIDTH/2 - 70 + 35/2,HEIGHT - 40))
+    # else:
+    #     if not done:
+    #         pygame.display.update()
+    #         done = True
     #Drawing player
     pygame.draw.rect(screen, WHITE, player)
     enemy.update(screen, BLACK, WIDTH, HEIGHT)
