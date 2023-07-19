@@ -5,6 +5,7 @@ import pygame
 import sys
 import os
 import enemy as rectanglepants
+from random import randint
 
 pygame.init()
 
@@ -23,12 +24,22 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Bullet Hell")
 clock = pygame.time.Clock()
 
+enemyList = []
+for i in range(300):
+    yLocation = randint(10, 750)
+    enemy = rectanglepants.enemy(HEIGHT/2, yLocation, 2)
+    enemyList.append(enemy)
+    print(enemy.y)
+
 player = pygame.Rect(WIDTH/2, HEIGHT/2, 15, 15)
 enemy = rectanglepants.enemy(HEIGHT/2, 20, 2)
 
 running = True
 done = False
 done1 = False
+timesLooped = 0
+
+player_speed = [0, 0]
 
 while running:
     # poll for events
@@ -39,12 +50,35 @@ while running:
             running = False
 
 
-    # if event.type == pygame.MOUSEBUTTONDOWN:         
-    #         #if the mouse is clicked on the
-    #         # button the game is terminated
-    #         if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
-    #             quit()
-    #             buttonClick = True
+        # if event.type == pygame.MOUSEBUTTONDOWN:         
+        #         #if the mouse is clicked on the
+        #         # button the game is terminated
+        #         if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
+        #             quit()
+        #             buttonClick = True
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                print('Test')
+                player_speed[1] =- 3
+            elif event.key == pygame.K_s:
+                player_speed[1] = 3
+            elif event.key == pygame.K_a:
+                player_speed[0] =- 3
+            elif event.key == pygame.K_d:
+                player_speed[0] = 3
+        elif event.type == pygame.KEYUP:
+            if event.key in (pygame.K_w, pygame.K_s):
+                player_speed[1] = 0
+            if event.key in (pygame.K_a, pygame.K_d):
+                player_speed[0] = 0
+
+    player.move_ip(player_speed)
+
+    if player.colliderect(enemy.x) and player.colliderect(enemy.y):
+        print('Lost')
+
+
 
     screen.fill(RED)
     # mouse = pygame.mouse.get_pos()
@@ -65,9 +99,19 @@ while running:
     #         pygame.display.update()
     #         done = True
     #Drawing player
+
+
+
     pygame.draw.rect(screen, WHITE, player)
-    enemy.update(screen, BLACK, WIDTH, HEIGHT)
-    pygame.display.update()
+    enemy.update(screen, BLACK, HEIGHT)
+   
+    for i in range(300):
+        if not timesLooped == 5:
+            timesLooped += 1
+
+        else:
+            timesLooped -= 5
+            enemyList[i].update(screen, BLACK, HEIGHT)
 
     pygame.display.flip()
 

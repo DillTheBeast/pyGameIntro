@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 
 class enemy:
     def __init__(enemy, x, y, speed):
@@ -11,10 +12,11 @@ class enemy:
         pygame.draw.rect(screen, color, enemies)
 
     def move(enemy, HEIGHT):
-        enemy.x -= enemy.speed
+        enemy.y += enemy.speed
 
-        if enemy.y < 0:
-            enemy.y = HEIGHT
+        if enemy.y > HEIGHT:
+            enemy.y = 0
+            enemy.x = randint(10, 750)
 
     def update(enemy, screen, color, HEIGHT):
         enemy.draw(screen, color)
