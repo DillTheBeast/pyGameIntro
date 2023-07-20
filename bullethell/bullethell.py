@@ -34,7 +34,6 @@ for i in range(NUM_ENEMIES):
     enemy = Enemy(30, yLocation, 2)
     enemyList.append(enemy)
     enemyColors.append(BLACK)
-    print(enemy.y)
 
 player = pygame.Rect(WIDTH/2, HEIGHT/2, 10, 10)
 enemy = Enemy(HEIGHT/2, 20, 2)
