@@ -112,9 +112,6 @@ while running:
             pygame.display.update()
             done = True
     #Drawing player
-
-
-
     pygame.draw.rect(screen, WHITE, player)
     if buttonClick:
         
