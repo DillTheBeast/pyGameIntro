@@ -43,6 +43,8 @@ running = True
 done = False
 done1 = False
 timesLooped = 0
+lost = False
+over = False
 
 player_speed = [0, 0]
 
@@ -82,8 +84,10 @@ while running:
 
     for i in range(NUM_ENEMIES):
         if player.colliderect(enemyList[i].rect):  # Modify this line
+            #Player is dead
             enemyColors[i] = THING
             print('Deadd')
+            quit()
         
 
 

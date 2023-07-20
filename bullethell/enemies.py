@@ -7,11 +7,9 @@ class Enemy:
         self.y = y
         self.speed = speed
         self.rect = pygame.Rect(self.x, self.y, 20, 20)
-        self.collider = pygame.Rect(self.x, self.y, 13, 13)
 
     def draw(self, screen, color):
         pygame.draw.rect(screen, color, self.rect)
-        pygame.draw.rect(screen, color, self.collider)
 
     def move(self, HEIGHT):
         self.y += self.speed
@@ -22,7 +20,6 @@ class Enemy:
 
         #Updates position when x or y changes
         self.rect.center = (self.x, self.y)
-        self.collider.center = (self.x, self.y)
 
     def update(self, screen, color, HEIGHT):
         self.move(HEIGHT)
