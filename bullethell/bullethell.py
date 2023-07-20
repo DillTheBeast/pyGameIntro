@@ -79,8 +79,6 @@ while running:
                 player_speed[0] = 0
 
     player.move_ip(player_speed)
-    print('x',player.x)
-    print('y',player.y)
 
     for i in range(NUM_ENEMIES):
         if player.colliderect(enemyList[i].rect):  # Modify this line
