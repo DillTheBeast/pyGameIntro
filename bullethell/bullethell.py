@@ -30,6 +30,8 @@ enemyList = []
 enemyColors = []
 score = 0
 timeScore = 0
+myFont = pygame.font.SysFont("Times New Roman", 60)
+scoreShow = myFont.render(str(score), False, WHITE)
 
 for i in range(NUM_ENEMIES):
     yLocation = randint(10, 750)
@@ -120,6 +122,8 @@ while running:
             score += 50
             timeScore += 1
             print(score)
+            scoreShow = myFont.render(str(score), False, WHITE)
+            
 
 
     pygame.display.flip()
