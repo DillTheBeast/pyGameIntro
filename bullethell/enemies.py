@@ -21,6 +21,10 @@ class Enemy:
         #Updates position when x or y changes
         self.rect.center = (self.x, self.y)
 
+
+    def restart(self):
+        self.speed = 0
+
     def update(self, screen, color, HEIGHT):
         self.move(HEIGHT)
         self.draw(screen, color)

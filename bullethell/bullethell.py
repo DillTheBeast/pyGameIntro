@@ -28,6 +28,8 @@ clock = pygame.time.Clock()
 NUM_ENEMIES = 100
 enemyList = []
 enemyColors = []
+score = 0
+timeScore = 0
 
 for i in range(NUM_ENEMIES):
     yLocation = randint(10, 750)
@@ -42,8 +44,7 @@ running = True
 done = False
 done1 = False
 timesLooped = 0
-lost = False
-over = False
+dead = False
 
 player_speed = [0, 0]
 
@@ -62,33 +63,28 @@ while running:
             if WIDTH/2-70 <= mouse[0] <= WIDTH/2+140 and HEIGHT - 40 <= mouse[1] <= HEIGHT+80:
                 buttonClick = True
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
-                player_speed[1] =- 3
-            elif event.key == pygame.K_s:
-                player_speed[1] = 3
-            elif event.key == pygame.K_a:
-                player_speed[0] =- 3
-            elif event.key == pygame.K_d:
-                player_speed[0] = 3
-        elif event.type == pygame.KEYUP:
-            if event.key in (pygame.K_w, pygame.K_s):
-                player_speed[1] = 0
-            if event.key in (pygame.K_a, pygame.K_d):
-                player_speed[0] = 0
+        if not dead:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w:
+                    player_speed[1] =- 3
+                elif event.key == pygame.K_s:
+                    player_speed[1] = 3
+                elif event.key == pygame.K_a:
+                    player_speed[0] =- 3
+                elif event.key == pygame.K_d:
+                    player_speed[0] = 3
+            elif event.type == pygame.KEYUP:
+                if event.key in (pygame.K_w, pygame.K_s):
+                    player_speed[1] = 0
+                if event.key in (pygame.K_a, pygame.K_d):
+                    player_speed[0] = 0
 
     player.move_ip(player_speed)
 
     for i in range(NUM_ENEMIES):
         if player.colliderect(enemyList[i].rect):  # Modify this line
             #Player is dead
-            enemyColors[i] = THING
-            print('Deadd')
-            quit()
-        
-
-
-
+            dead = True
 
     screen.fill(RED)
     mouse = pygame.mouse.get_pos()
@@ -100,6 +96,7 @@ while running:
     else:
         if not done1:
             pygame.display.update()
+            before = pygame.time.get_ticks()
             done1 = True
 
     if not buttonClick:
@@ -115,7 +112,21 @@ while running:
         for i in range(NUM_ENEMIES):
             enemyList[i].update(screen, enemyColors[i], HEIGHT)
 
+        after = pygame.time.get_ticks() - before
+        finalAfter = after/10000
+        finalAfter -= timeScore
+        #print(finalAfter)
+        if finalAfter >= 1:
+            score += 50
+            timeScore += 1
+            print(score)
+
 
     pygame.display.flip()
 
     clock.tick(60)
+
+    if dead:
+        player_speed = [0, 0]
+        for i in range(NUM_ENEMIES):
+            enemyList[i].restart()
