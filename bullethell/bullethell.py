@@ -123,6 +123,8 @@ while running:
             timeScore += 1
             print(score)
             scoreShow = myFont.render(str(score), False, WHITE)
+
+    screen.blit(scoreShow, (0, 0))
             
 
 
