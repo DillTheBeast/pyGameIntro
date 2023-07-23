@@ -19,6 +19,7 @@ player_pos = [250/2, HEIGHT - player_size]
 
 player = pg.Rect(player_size, HEIGHT/2, player_size, player_size)
 startPlatform = pg.Rect(0, HEIGHT - 50, 250, 50)
+secondPlatform = pg.Rect(400, HEIGHT - 200, 250, 50)
 
 running = True
 
@@ -68,6 +69,7 @@ while running:
 
     pg.draw.rect(screen, WHITE, player)
     pg.draw.rect(screen, GREEN, startPlatform)
+    pg.draw.rect(screen, GREEN, secondPlatform)
 
     pg.display.flip()
 
