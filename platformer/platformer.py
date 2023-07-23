@@ -10,7 +10,7 @@ color_light = (170,170,170)
 color_dark = (100,100,100)
 SPEED = 0
 GRAVITY = 450
-JUMP_STRENGTH = 250
+JUMP_STRENGTH = 350
 FPS = 60
 player_speed = [SPEED, SPEED]
 player_size = 30
@@ -19,7 +19,7 @@ player_pos = [250/2, HEIGHT - player_size]
 
 player = pg.Rect(player_size, HEIGHT/2, player_size, player_size)
 startPlatform = pg.Rect(0, HEIGHT - 50, 250, 50)
-secondPlatform = pg.Rect(400, HEIGHT - 200, 250, 50)
+secondPlatform = pg.Rect(400, HEIGHT - 150, 150, 50)
 
 running = True
 
