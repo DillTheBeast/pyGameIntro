@@ -63,7 +63,8 @@ while running:
         player_vel[1] = min(player_vel[1], platformList[i].y)
         player_pos[1] += player_vel[1] * dt
 
-        if player_pos[1] >= platformList[i].y - player_size and platformList[i].x - player_size:
+        test_player = pg.Rect(player_pos[0], player_pos[1] + player_vel[1] * dt, player_size, player_size)
+        if test_player.colliderect(platformList[i].rect):
             player_pos[1] = platformList[i].y - player_size
             player_vel[1] = 0
 
