@@ -64,7 +64,12 @@ while running:
         player_pos[1] += player_vel[1] * dt
 
         test_player = pg.Rect(player_pos[0], player_pos[1] + player_vel[1] * dt, player_size, player_size)
-        if test_player.colliderect(platformList[i].rect):
+        playerY = test_player.y - player_size/2
+        platY = platformList[i].rect.top
+        print(playerY)
+        print(platY)
+        # if test_player.colliderect(platformList[i].rect):
+        if platY == playerY:
             player_pos[1] = platformList[i].y - player_size
             player_vel[1] = 0
 
