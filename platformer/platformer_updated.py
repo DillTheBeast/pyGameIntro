@@ -1,3 +1,4 @@
+
 import pygame as pg
 import platforms
 
@@ -31,12 +32,9 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Platformer")
 clock = pg.time.Clock()
 
-def check_collision_top(rect1, rect2):
-    # Check if rect1's bottom collides with rect2's top
-    return rect1.bottom <= rect2.top
-
 while running:
     dt = clock.tick(FPS) / 1000  # Delta Time = Airtime
+    prev_player_pos = list(player_pos)
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -45,8 +43,8 @@ while running:
 
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_SPACE:
-                # if player.bottom >= platformList[i].y:
-                player_vel[1] = -JUMP_STRENGTH
+                if player.bottom >= platformList[i].y:
+                    player_vel[1] = -JUMP_STRENGTH
             elif event.key == pg.K_a:
                 player_speed[0] = -3
             elif event.key == pg.K_d:
@@ -64,15 +62,16 @@ while running:
     # gravity and jumping
     player_vel[1] += GRAVITY * dt
     for i in range(len(platformList)):
-        player_vel[1] = min(player_vel[1], platformList[i].y)
         player_pos[1] += player_vel[1] * dt
-
         test_player = pg.Rect(player_pos[0], player_pos[1] + player_vel[1] * dt, player_size, player_size)
 
-        # if test_player.colliderect(platformList[i].rect):
-        if check_collision_top(test_player, platformList[i].rect):
-            player_pos[1] = platformList[i].y - player_size
-            player_vel[1] = 0
+        # If the player is intersecting with the platform:
+        if test_player.colliderect(platformList[i].rect):
+            # If the previous position was above the platform:
+            if prev_player_pos[1] + player_size <= platformList[i].rect.top:
+                # Set the player's position to the top of the platform and stop the downward velocity:
+                player_pos[1] = platformList[i].rect.top - player_size
+                player_vel[1] = 0
 
     # update player rect position
     player.topleft = player_pos
@@ -84,9 +83,3 @@ while running:
     secondPlatform.draw(screen, GREEN)
 
     pg.display.flip()
-
-    #
-    # you're already tic/ing at the top of this loop, remove the last
-    # clock.tick() call1to make the game less laggy
-    # - random passerby
-    #
