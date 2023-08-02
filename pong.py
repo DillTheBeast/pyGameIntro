@@ -2,6 +2,7 @@
 import pygame
 import sys
 import os
+import random
 
 # pygame setup
 pygame.init()
@@ -42,6 +43,7 @@ ball = pygame.Rect(WIDTH/2, HEIGHT/2, BALL_SIZE, BALL_SIZE)
 paddle1_speed = [0, PADDLE_SPEED]
 paddle2_speed = [0, PADDLE_SPEED]
 ball_speed = [BALL_SPEED, BALL_SPEED]
+list = [-3, 3]
 
 running = True
 done = False
@@ -108,9 +110,7 @@ while running:
             ball.move_ip( ball_speed)
 
     if ball.top < 0 or ball.bottom > HEIGHT:
-        print('Speed before:', ball_speed[0])
         ball_speed[1] *=- 1
-        print('Speed after:', ball_speed[0])
     if ball.colliderect(paddle1) or ball.colliderect(paddle2):
         ball_speed[0] *=- 1
         if abs(ball_speed[0]) == ball_speed[0]:
@@ -122,21 +122,24 @@ while running:
             ball_speed[1] -= 0.2
 
     if ball.left < 0:
+        up = random.choice(list)
+        side = random.choice(list)
+        ball_speed[0] = side
+        ball_speed[1] = up
         ball.center = (WIDTH/2, HEIGHT/2)
-        ball_speed[0] *=- 1
         score1 += 1
         right = not right
         text1 = myFont.render(str(score1), False, WHITE)
-        BALL_SPEED = 3
 
     if ball.right > WIDTH:
+        up = random.choice(list)
+        side = random.choice(list)
+        ball_speed[0] = side
+        ball_speed[1] = up
         ball.center = (WIDTH/2, HEIGHT/2)
-        ball_speed[0] *=- 1
         score2 += 1
         right = not right
         text2 = myFont.render(str(score2), False, WHITE)
-        ball_speed[0] = 3
-        ball_speed[1] = 3
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill(BLACK)
