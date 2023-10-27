@@ -25,7 +25,7 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/dillo/OneDrive/Documents/GitHub/pyGameIntro&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.platformer">
+  <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pyGameIntro" />
       <option name="INTERPRETER_OPTIONS" value="" />
