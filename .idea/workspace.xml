@@ -16,6 +16,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2SlwSrgvCp3Asn6gA5PVwGSkuwU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,7 +31,7 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/dillo/OneDrive/Documents/GitHub/pyGameIntro&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.platformer">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pyGameIntro" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,6 +80,13 @@
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-70d14f972363-b3938847d04f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.9802.6" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
